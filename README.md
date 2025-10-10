@@ -1,33 +1,15 @@
-# 🔐 Information and Network Security (INS) Journal
-
-This repository contains practical implementations and exercises for Information and Network Security concepts, covering classical cryptography, modern encryption, authentication, and network security protocols.
-
----
-
-## 📚 Table of Contents
-
-1. [Practical 1: Substitution and Transformation Ciphers](#practical-1-substitution-and-transformation-ciphers)
-2. [Practical 2: RSA Encryption and Decryption](#practical-2-rsa-encryption-and-decryption)
-3. [Practical 3: Message Authentication Codes (MAC)](#practical-3-message-authentication-codes-mac)
-4. [Practical 4: Digital Signature with RSA and Hashing](#practical-4-digital-signature-with-rsa-and-hashing)
-5. [Practical 5: Diffie-Hellman Key Exchange](#practical-5-diffie-hellman-key-exchange)
-6. [Practical 6: IP Security (IPSec) Configuration](#practical-6-ip-security-ipsec-configuration)
-7. [Practical 7: Web Security with SSL/TLS](#practical-7-web-security-with-ssltls)
-8. [Practical 8: Firewall Configuration and Rule-based Filtering](#practical-8-firewall-configuration-and-rule-based-filtering)
-
----
+[README.md](https://github.com/user-attachments/files/22847714/README.md)
 
 ## Practical 1: Substitution and Transformation Ciphers
 
-### AIM
-
-Implementing substitution and transformation cipher — design and implement algorithms to encrypt and decrypt messages using classical substitution and transposition techniques.
+### **AIM**
+DKFNDDKGNDV
 
 ### 🅐 Caesar (Shift) Cipher
 
-Algorithm: Shifts each letter by a fixed number of positions in the alphabet.
+**Algorithm:** Shifts each letter by a fixed number of positions in the alphabet.
 
-python
+```python
 def encrypt(text, shift):
     result = ""
     for char in text:
@@ -51,13 +33,13 @@ decrypt_text = decrypt(encrypt_text, shift)
 print("Plain text:", plain_text)
 print("Encrypted:", encrypt_text)
 print("Decrypted:", decrypt_text)
-
+```
 
 ### 🅑 Vernam (One-Time Pad) Cipher
 
-Algorithm: XOR operation between plaintext and key of equal length.
+**Algorithm:** XOR operation between plaintext and key of equal length.
 
-python
+```python
 def vernam_encrypt(plaintext, key):
     if len(plaintext) != len(key):
         raise ValueError("Key and plaintext must be same length")
@@ -82,13 +64,13 @@ print("Plaintext:", plain_text)
 print("Key:", key)
 print("Encrypted:", cipher)
 print("Decrypted:", decrypted)
-
+```
 
 ### 🅒 Columnar Transposition Cipher
 
-Algorithm: Arranges plaintext in a grid and reads columns based on keyword order.
+**Algorithm:** Arranges plaintext in a grid and reads columns based on keyword order.
 
-python
+```python
 def encrypt(plaintext, keyword):
     # Remove spaces and convert to uppercase
     plaintext = plaintext.replace(" ", "").upper()
@@ -154,13 +136,13 @@ print("Plain text:", plain_text)
 print("Keyword:", key)
 print("Encrypted:", encrypted)
 print("Decrypted:", decrypted)
-
+```
 
 ### 🅓 Rail Fence Cipher
 
-Algorithm: Writes plaintext in zigzag pattern across multiple rails.
+**Algorithm:** Writes plaintext in zigzag pattern across multiple rails.
 
-python
+```python
 def railfence_encrypt(plaintext, rails=2):
     plaintext = plaintext.replace(" ", "").lower()
     
@@ -198,18 +180,18 @@ decrypted = railfence_decrypt(encrypted)
 print("Plain text:", plain_text)
 print("Encrypted:", encrypted)
 print("Decrypted:", decrypted)
-
+```
 
 ---
 
 ## Practical 2: RSA Encryption and Decryption
 
-### AIM
+### **AIM**
 Implement the RSA algorithm for public-key encryption and decryption, and explore its properties and security considerations.
 
 ### 🅐 Monoalphabetic Substitution Cipher
 
-python
+```python
 import string
 
 def monoalphabetic_cipher():
@@ -248,11 +230,11 @@ decrypted = decrypt(encrypted)
 print("Original:", message)
 print("Encrypted:", encrypted)
 print("Decrypted:", decrypted)
-
+```
 
 ### 🅑 RSA Algorithm (Manual Implementation)
 
-python
+```python
 import math
 
 def gcd(a, b):
@@ -301,11 +283,11 @@ def rsa_manual():
     print(f"Decrypted: {plaintext}")
 
 rsa_manual()
-
+```
 
 ### 🅒 RSA using Python RSA Library
 
-python
+```python
 import rsa
 
 def rsa_library_example():
@@ -326,18 +308,18 @@ def rsa_library_example():
     print("Decrypted Message:", decMessage)
 
 rsa_library_example()
-
+```
 
 ---
 
 ## Practical 3: Message Authentication Codes (MAC)
 
-### AIM
+### **AIM**
 Implement algorithms to generate and verify MACs for data integrity and authenticity.
 
 ### 🅐 MD5 Algorithm
 
-python
+```python
 import hashlib
 
 def md5_demo():
@@ -354,11 +336,11 @@ def md5_demo():
     print("Same content, different case produces different hash!")
 
 md5_demo()
-
+```
 
 ### 🅑 SHA Algorithm
 
-python
+```python
 import hashlib
 
 def sha_demo():
@@ -374,16 +356,16 @@ def sha_demo():
     print("SHA-256 Hash:", result256.hexdigest())
 
 sha_demo()
-
+```
 
 ---
 
 ## Practical 4: Digital Signature with RSA and Hashing
 
-### AIM
+### **AIM**
 Using RSA with SHA-256 to sign and verify message integrity.
 
-python
+```python
 import rsa
 import hashlib
 
@@ -419,16 +401,16 @@ def digital_signature_demo():
         print("❌ Tampered message verification: FAILED (Expected)")
 
 digital_signature_demo()
-
+```
 
 ---
 
 ## Practical 5: Diffie-Hellman Key Exchange
 
-### AIM
+### **AIM**
 Key Exchange using Diffie-Hellman algorithm.
 
-python
+```python
 def diffie_hellman_demo():
     # Public parameters (known to both parties)
     P = 23  # Prime modulus
@@ -472,196 +454,170 @@ def diffie_hellman_demo():
         print("❌ Key exchange failed!")
 
 diffie_hellman_demo()
+```
+
+---
 
 
 ---
 
-## Practical 6: IP Security (IPSec) Configuration
+## Practical 5: Diffie-Hellman Key Exchange
 
-### AIM
-Configure IPSec on network devices to provide secure communication and protect against unauthorized access and attacks.
+### **AIM**
+Key Exchange using Diffie-Hellman algorithm.
 
-### Configuration Steps:
+```python
+def diffie_hellman_demo():
+    # Public parameters (known to both parties)
+    P = 23  # Prime modulus
+    G = 9   # Generator
+    
+    print(f"Public Parameters:")
+    print(f"P (prime) = {P}")
+    print(f"G (generator) = {G}")
+    
+    # Alice's secret key
+    a = 4
+    print(f"\nAlice's private key: {a}")
+    
+    # Bob's secret key  
+    b = 6
+    print(f"Bob's private key: {b}")
+    
+    # Alice computes A = G^a mod P
+    A = pow(G, a, P)
+    print(f"\nAlice computes A = G^a mod P = {G}^{a} mod {P} = {A}")
+    
+    # Bob computes B = G^b mod P
+    B = pow(G, b, P)
+    print(f"Bob computes B = G^b mod P = {G}^{b} mod {P} = {B}")
+    
+    # Alice computes shared secret: ka = B^a mod P
+    ka = pow(B, a, P)
+    print(f"\nAlice computes shared secret: ka = B^a mod P = {B}^{a} mod {P} = {ka}")
+    
+    # Bob computes shared secret: kb = A^b mod P
+    kb = pow(A, b, P)
+    print(f"Bob computes shared secret: kb = A^b mod P = {A}^{b} mod {P} = {kb}")
+    
+    print(f"\n🔐 Shared Secret Keys:")
+    print(f"Alice's computed key: {ka}")
+    print(f"Bob's computed key: {kb}")
+    
+    if ka == kb:
+        print("✅ Key exchange successful! Both parties have the same shared secret.")
+    else:
+        print("❌ Key exchange failed!")
 
-1. Open Control Panel
-   - Go to Windows Control Panel
-   - Navigate to Network and Sharing Center
-
-2. Set up VPN Connection
-   - Click on "Set up a new connection or network"
-   - Select "Connect to a workplace"
-   - Choose "Use my Internet connection (VPN)"
-
-3. Configure VPN Settings
-   - Enter Internet address of VPN server
-   - Enter destination name
-   - Configure user credentials
-
-4. Advanced IPSec Settings
-   - Access VPN properties
-   - Navigate to Security tab
-   - Set VPN type to IKEv2 or L2TP/IPSec
-   - Configure authentication methods
-
-5. Apply and Test
-   - Save configuration
-   - Test connection
-   - Verify secure tunnel establishment
-
----
-
-## Practical 7: Web Security with SSL/TLS
-
-### AIM
-Configure and implement secure web communication using SSL/TLS protocol, including certificate management and secure session establishment.
-
-### Configuration Steps:
-
-1. Browser SSL/TLS Settings
-   - Open Internet Options in Control Panel
-   - Navigate to Advanced tab
-   - Locate Security section
-
-2. Enable SSL/TLS Protocols
-   - ✅ Enable SSL 2.0 (if required for compatibility)
-   - ✅ Enable SSL 3.0 (if required for compatibility)  
-   - ✅ Enable TLS 1.0
-   - ✅ Enable TLS 1.1
-   - ✅ Enable TLS 1.2
-   - ✅ Enable TLS 1.3 (recommended)
-
-3. Certificate Management
-   - Access Certificate Manager
-   - Import/Export certificates as needed
-   - Verify certificate chains
-
-4. Security Validation
-   - Test HTTPS connections
-   - Verify certificate validity
-   - Check SSL/TLS handshake process
+diffie_hellman_demo()
+```
 
 ---
-
-## Practical 8: Firewall Configuration and Rule-based Filtering
-
-### AIM
-Configure and test firewall rules to control network traffic, including blocking HTTP/HTTPS ports and specific websites by IP address.
-
-### 🅐 Blocking HTTP/HTTPS Ports (80, 443)
-
-#### Steps to Block Port 80 (HTTP):
-
-1. Open Windows Defender Firewall
-   - Search "Windows Defender Firewall" in Start menu
-   - Click "Advanced settings"
-
-2. Create Outbound Rule
-   - Right-click "Outbound Rules"
-   - Select "New Rule"
-
-3. Configure Port Rule
-   - Rule Type: Port
-   - Protocol: TCP
-   - Specific Local Ports: 80
-
-4. Set Action
-   - Select "Block the connection"
-
-5. Apply to Profiles
-   - ✅ Domain
-   - ✅ Private  
-   - ✅ Public
-
-6. Name the Rule
-   - Name: "Block HTTP Port 80"
-   - Description: "Blocks outbound HTTP traffic"
-
-#### Steps to Block Port 443 (HTTPS):
-
-Repeat the same process but use:
-- Specific Local Ports: 443
-- Name: "Block HTTPS Port 443"
-- Description: "Blocks outbound HTTPS traffic"
-
-### 🅑 Blocking Website by IP Address
-
-#### Steps:
-
-1. Find Website IP
-   cmd
-   nslookup website.com
-   
-
-2. Create Outbound Rule
-   - Rule Type: Custom
-   - Program: All Programs
-   - Protocol: Any
-
-3. Configure Scope
-   - Remote IP addresses: "These IP addresses"
-   - Add the website's IP address
-
-4. Set Action
-   - Select "Block the connection"
-
-5. Apply to All Profiles
-   - ✅ Domain
-   - ✅ Private
-   - ✅ Public
-
-6. Name the Rule
-   - Name: "Block Website [website.com]"
-   - Description: "Blocks access to specific website by IP"
-
-### Testing Firewall Rules
-
-bash
-# Test port connectivity
-telnet target_ip 80
-telnet target_ip 443
-
-# Test website accessibility
-ping website.com
-curl -I http://website.com
-
-
 ---
 
-## 🛠 Prerequisites
+## Practical 5: Diffie-Hellman Key Exchange
 
-- Python 3.6+
-- Required libraries:
-  bash
-  pip install rsa cryptography hashlib
-  
-- Windows OS (for IPSec, SSL/TLS, and Firewall configurations)
-- Administrative privileges for network configurations
+### **AIM**
+Key Exchange using Diffie-Hellman algorithm.
+
+```python
+def diffie_hellman_demo():
+    # Public parameters (known to both parties)
+    P = 23  # Prime modulus
+    G = 9   # Generator
+    
+    print(f"Public Parameters:")
+    print(f"P (prime) = {P}")
+    print(f"G (generator) = {G}")
+    
+    # Alice's secret key
+    a = 4
+    print(f"\nAlice's private key: {a}")
+    
+    # Bob's secret key  
+    b = 6
+    print(f"Bob's private key: {b}")
+    
+    # Alice computes A = G^a mod P
+    A = pow(G, a, P)
+    print(f"\nAlice computes A = G^a mod P = {G}^{a} mod {P} = {A}")
+    
+    # Bob computes B = G^b mod P
+    B = pow(G, b, P)
+    print(f"Bob computes B = G^b mod P = {G}^{b} mod {P} = {B}")
+    
+    # Alice computes shared secret: ka = B^a mod P
+    ka = pow(B, a, P)
+    print(f"\nAlice computes shared secret: ka = B^a mod P = {B}^{a} mod {P} = {ka}")
+    
+    # Bob computes shared secret: kb = A^b mod P
+    kb = pow(A, b, P)
+    print(f"Bob computes shared secret: kb = A^b mod P = {A}^{b} mod {P} = {kb}")
+    
+    print(f"\n🔐 Shared Secret Keys:")
+    print(f"Alice's computed key: {ka}")
+    print(f"Bob's computed key: {kb}")
+    
+    if ka == kb:
+        print("✅ Key exchange successful! Both parties have the same shared secret.")
+    else:
+        print("❌ Key exchange failed!")
+
+diffie_hellman_demo()
+```
 
 ---
-
-## 📝 Usage Notes
-
-1. Security Warning: The implementations provided are for educational purposes. For production use, employ well-tested cryptographic libraries.
-
-2. Key Management: Always use secure random number generation for keys in real applications.
-
-3. Testing Environment: Network security configurations should be tested in isolated environments first.
-
-4. Documentation: Keep detailed logs of all security configurations for audit and troubleshooting purposes.
-
 ---
 
-## 🔗 References
+## Practical 5: Diffie-Hellman Key Exchange
 
-- [RSA Algorithm](https://en.wikipedia.org/wiki/RSA_(cryptosystem))
-- [Diffie-Hellman Key Exchange](https://en.wikipedia.org/wiki/Diffie%E2%80%93Hellman_key_exchange)
-- [IPSec Protocol Suite](https://tools.ietf.org/html/rfc4301)
-- [TLS/SSL Protocols](https://tools.ietf.org/html/rfc8446)
+### **AIM**
+Key Exchange using Diffie-Hellman algorithm.
 
----
+```python
+def diffie_hellman_demo():
+    # Public parameters (known to both parties)
+    P = 23  # Prime modulus
+    G = 9   # Generator
+    
+    print(f"Public Parameters:")
+    print(f"P (prime) = {P}")
+    print(f"G (generator) = {G}")
+    
+    # Alice's secret key
+    a = 4
+    print(f"\nAlice's private key: {a}")
+    
+    # Bob's secret key  
+    b = 6
+    print(f"Bob's private key: {b}")
+    
+    # Alice computes A = G^a mod P
+    A = pow(G, a, P)
+    print(f"\nAlice computes A = G^a mod P = {G}^{a} mod {P} = {A}")
+    
+    # Bob computes B = G^b mod P
+    B = pow(G, b, P)
+    print(f"Bob computes B = G^b mod P = {G}^{b} mod {P} = {B}")
+    
+    # Alice computes shared secret: ka = B^a mod P
+    ka = pow(B, a, P)
+    print(f"\nAlice computes shared secret: ka = B^a mod P = {B}^{a} mod {P} = {ka}")
+    
+    # Bob computes shared secret: kb = A^b mod P
+    kb = pow(A, b, P)
+    print(f"Bob computes shared secret: kb = A^b mod P = {A}^{b} mod {P} = {kb}")
+    
+    print(f"\n🔐 Shared Secret Keys:")
+    print(f"Alice's computed key: {ka}")
+    print(f"Bob's computed key: {kb}")
+    
+    if ka == kb:
+        print("✅ Key exchange successful! Both parties have the same shared secret.")
+    else:
+        print("❌ Key exchange failed!")
 
-## 📄 License
-
-This educational material is provided for academic purposes. Please ensure compliance with your institution's academic integrity policies.
+diffie_hellman_demo()
+```
 
 ---
