@@ -1,64 +1,24 @@
-# Java Servlet and JSP Practicals
+# AIA PRACTICALS
 
 ## PRACTICAL NO: 1
 ### **AIM**
-Implement the following Simple Servlet application.
+TIC TAC TOE GAME
 
-### 🅐 Simple Calculator Application using Servlet
 
-**Algorithm:** Create a calculator that performs basic arithmetic operations (+, -, *, /) based on user input.
-
-**index.html:**
-```html
-<html>
-<head>
-<title>Simple Calculator</title>
-</head>
-<body>
-<form action="check" method="get">
-Enter number 1:<input type="text" name="n1">
-Enter number 2:<input type="text" name="n2">
-Select Operator:<select name="operator">
-<option value="+">+</option>
-<option value="-">-</option>
-<option value="*">*</option>
-<option value="/">/</option>
-</select>
-<input type="submit" value="Calculate">
-<input type="reset" value="Reset">
-</form> 
-</body> 
-</html>
+**CODE**
+'''
+b=[" "]*9;p="X"
+w=lambda: any(b[i]==b[i+1]==b[i+2]!=" " for i in[0,3,6])or any(b[i]==b[i+3]==b[i+6]!=" "for i in[0,1,2])or b[0]==b[4]==b[8]!=" "or b[2]==b[4]==b[6]!=" "
+for _ in range(9):
+    print(f"{b[0]}|{b[1]}|{b[2]}\n-+-+-\n{b[3]}|{b[4]}|{b[5]}\n-+-+-\n{b[6]}|{b[7]}|{b[8]}")
+    m=int(input(f"{p}'s move(1-9):"))-1
+    if b[m]==" ":b[m]=p
+    if w():print(p,"wins!");break
+    p="XO"[p=="X"]
+else:print("Draw!")
 ```
 
-**check.java:**
-```java
-import java.io.*;
-import javax.servlet.*;
 
-public class check extends GenericServlet {
-    public void service(ServletRequest req, ServletResponse res)
-    throws ServletException, IOException {
-        PrintWriter out = res.getWriter();
-        int a = Integer.parseInt(req.getParameter("n1"));
-        int b = Integer.parseInt(req.getParameter("n2"));
-        String op = req.getParameter("operator");
-        
-        if(op.equals("+")) {
-            out.println("Addition is: " + (a + b));
-        }
-        else if(op.equals("-")) {
-            out.println("Subtraction is: " + (a - b));
-        }
-        else if(op.equals("*")) {
-            out.println("Multiplication is: " + (a * b));
-        }
-        else {
-            out.println("Division is: " + (a / b));
-        }
-    }
-}
-```
 
 ### 🅑 Login Page Servlet
 
