@@ -979,93 +979,177 @@ TextBox2.Text;
 
 **Home.aspx:**
 ```
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" 
-%> 
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head runat="server"> 
-<title></title> 
-</head> 
-<body> 
-<form id="form1" runat="server"> 
-<div> 
-<asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" /> 
-<br /> 
-</div> 
-<asp:Menu ID="Menu1" runat="server" BackColor="#F7F6F3" 
-DataSourceID="SiteMapDataSource1" DynamicHorizontalOffset="2" Font-Names="Verdana" Font- 
-Size="0.8em" ForeColor="#7C6F57" StaticSubMenuIndent="10px"> 
-<DynamicHoverStyleBackColor="#7C6F57" ForeColor="White" /> 
-<DynamicMenuItemStyleHorizontalPadding="5px" VerticalPadding="2px" /> 
-<DynamicMenuStyleBackColor="#F7F6F3" />
-<DynamicSelectedStyleBackColor="#5D7B9D" /> 
-<StaticHoverStyleBackColor="#7C6F57" ForeColor="White" /> 
-<StaticMenuItemStyleHorizontalPadding="5px" VerticalPadding="2px" /> 
-<StaticSelectedStyleBackColor="#5D7B9D" /> 
-</asp:Menu> 
-</form> 
-</body> 
-</html> 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Home.aspx.cs" Inherits="practical4d.Home" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Home Page</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+
+            <h2>Website Navigation Example</h2>
+            <hr />
+
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" />
+            <br /><br />
+
+            <asp:Menu ID="Menu1" runat="server" DataSourceID="SiteMapDataSource1"
+                      Orientation="Horizontal" BackColor="#99CCFF"
+                      Font-Bold="True" ForeColor="Black" />
+            <br /><br />
+
+            <asp:TreeView ID="TreeView1" runat="server"
+                          DataSourceID="SiteMapDataSource1" />
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+
+            <br /><br />
+            <asp:Label ID="Label1" runat="server" Text="Welcome to the Home Page!" Font-Bold="True" />
+        </div>
+    </form>
+</body>
+</html>
+
+
+```
+
+**Home.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4d
+{
+    public partial class Home : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
 
 ```
 
 **AboutUs.aspx:**
 ```
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AboutUs.aspx.cs" 
-Inherits="AboutUs" %> 
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head runat="server"> 
-<title></title> 
-</head> 
-<body> 
-<form id="form1" runat="server"> 
-<div><p> 
-We are offering B.Sc.I.T. Course in the B.N.N. College. 
-</p><p> 
-The course duration is of 3 years. 
-</p> 
-</div> 
-</form> 
-</body> 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="AboutUs.aspx.cs" Inherits="practical4d.AboutUs" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>About Us</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" />
+            <h2>About Us Page</h2>
+            <p>We are demonstrating Navigation Controls in ASP.NET.</p>
+        </div>
+    </form>
+</body>
 </html>
 
 
+
+
+```
+
+**AboutUs.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4d
+{
+    public partial class AboutUs : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
 
 ```
 
 **ContactUs.aspx:**
 ```
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" 
-Inherits="Message" %> 
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head runat="server"> 
-<title></title> 
-</head> 
-<body> 
-<form id="form1" runat="server"> 
-<div><p> 
-Management Contact:8976574534 
-</p><p> 
-Office Contact:9876897645 
-</p> 
-</div> 
-</form> 
-</body> 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ContactUs.aspx.cs" Inherits="practical4d.ContactUs" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Contact Us</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <asp:SiteMapPath ID="SiteMapPath1" runat="server" />
+            <h2>Contact Us Page</h2>
+            <p>Email: info@example.com<br />Phone: 9876543210</p>
+        </div>
+    </form>
+</body>
 </html>
+
+
+```
+
+**ContactUs.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4d
+{
+    public partial class ContactUs : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+
 
 ```
 
 **Web.sitemap:**
 ```
-<?xml version="1.0" encoding="utf-8" ?> 
-<siteMapxmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" > 
-<siteMapNodeurl="Home.aspx" title="Home Page" description="Home Page"> 
-<siteMapNodeurl="AboutUs.aspx" title="AboutUs Page" description="AboutUs Page" /> 
-<siteMapNodeurl="ContactUs.aspx" title="ContactUs Page" description="ContactUs Page" /> 
-</siteMapNode> 
+<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode title="Home" url="Home.aspx">
+    <siteMapNode title="About Us" url="AboutUs.aspx" />
+    <siteMapNode title="Contact Us" url="ContactUs.aspx" />
+  </siteMapNode>
 </siteMap>
+
+
+```
+
+
+**Web.config:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <siteMap defaultProvider="XmlSiteMapProvider" enabled="true">
+      <providers>
+        <add name="XmlSiteMapProvider"
+             type="System.Web.XmlSiteMapProvider"
+             siteMapFile="Web.sitemap" />
+      </providers>
+    </siteMap>
+  </system.web>
+
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="Home.aspx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+</configuration>
 
 ```
 
