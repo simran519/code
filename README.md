@@ -820,9 +820,84 @@ public partial class
 ```
 
 
-### 🅒Create a Registration form to demonstrate use of various Validation controls.
+### 🅒 Create Web Form to demonstrate use of Adrotator Control. 
 
-**1.  Range Validator:**
+**1.  AD Rotator:**
+
+**AdFile.xml:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/Images/ad1.jpg</ImageUrl>
+    <NavigateUrl>https://www.microsoft.com</NavigateUrl>
+    <AlternateText>Visit Microsoft</AlternateText>
+    <Impressions>3</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ad2.jpg</ImageUrl>
+    <NavigateUrl>https://www.google.com</NavigateUrl>
+    <AlternateText>Visit Google</AlternateText>
+    <Impressions>2</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ad3.jpg</ImageUrl>
+    <NavigateUrl>https://www.yahoo.com</NavigateUrl>
+    <AlternateText>Visit Yahoo</AlternateText>
+    <Impressions>1</Impressions>
+  </Ad>
+</Advertisements>
+
+```
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4b.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>AdRotator Example</title>
+</head>
+<body>
+<form id="form1" runat="server">
+    <div style="text-align:center">
+        <h2>AdRotator Control Example</h2>
+
+        <asp:AdRotator ID="AdRotator1" runat="server"
+            AdvertisementFile="~/AdFile.xml"
+            Target="_blank" />
+    </div>
+</form>
+</body>
+</html>
+
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4b
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+
+
+```
+
+### 🅒  Create Web Form to demonstrate use User Controls.
+
+**1.  User Control:**
 
 **AdFile.xml:**
 ```
