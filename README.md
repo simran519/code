@@ -1,4 +1,4 @@
-# AIA PRACTICALS
+# AWD PRACTICALS
 
 ## PRACTICAL NO: 1
 
@@ -6,370 +6,898 @@
 
 
 
-### 🅑TIC TAC TOE GAME
+### 🅑Create an application to print on screen the output of adding, subtracting, multiplying, and dividing two numbers entered by the user in C#.
 
-**Python:**
+**Calculator:**
+
+**WebForm1.aspx:**
 ```
-b=[" "]*9;p="X"
-w=lambda: any(b[i]==b[i+1]==b[i+2]!=" " for i in[0,3,6])or any(b[i]==b[i+3]==b[i+6]!=" "for i in[0,1,2])or b[0]==b[4]==b[8]!=" "or b[2]==b[4]==b[6]!=" "
-for _ in range(9):
-    print(f"{b[0]}|{b[1]}|{b[2]}\n-+-+-\n{b[3]}|{b[4]}|{b[5]}\n-+-+-\n{b[6]}|{b[7]}|{b[8]}")
-    m=int(input(f"{p}'s move(1-9):"))-1
-    if b[m]==" ":b[m]=p
-    if w():print(p,"wins!");break
-    p="XO"[p=="X"]
-else:print("Draw!")
-```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical1a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Arithmetic Operations</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label5" runat="server" Text="Enter Number 1:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox><br /><br />
 
-### 🅑Constraint- Satisfaction Problem(CSP)
+            <asp:Label ID="Label6" runat="server" Text="Enter Number 2:"></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox><br /><br />
 
+            <asp:Button ID="Button1" runat="server" Text="Results" OnClick="Button1_Click" /><br /><br />
 
-
-**PYTHON:**
-```
-colors = ['R', 'G', 'B']
-neighbors = {'WA':['NT','SA'],'NT':['WA','SA','Q'],'SA':['WA','NT','Q','NSW','V'],
-             'Q':['NT','SA','NSW'],'NSW':['Q','SA','V'],'V':['SA','NSW'],'T':[]}
-
-def solve(assign={}):
-    if len(assign)==len(neighbors): return assign
-    r=[x for x in neighbors if x not in assign][0]
-    for c in colors:
-        if all(assign.get(n)!=c for n in neighbors[r]):
-            res=solve(assign|{r:c})
-            if res: return res
-
-print(solve())
+            <asp:Label ID="Label1" runat="server" Text="Addition is : "></asp:Label><br />
+            <asp:Label ID="Label2" runat="server" Text="Subtraction is : "></asp:Label><br />
+            <asp:Label ID="Label3" runat="server" Text="Multiplication is : "></asp:Label><br />
+            <asp:Label ID="Label4" runat="server" Text="Division is : "></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
 
 ```
 
-### 🅒 ALPHA BETA PRUNING (MINIMAX ALGORITHM)
 
-**Algorithm:** ALPHA BETA PRUNING (MINIMAX ALGORITHM)
-
-**index.html:**
+**WebForm1.aspx.cs:**
 ```
-def minimax(d, idx, maxP, s, a, b, h):
-    if d == h: return s[idx]
-    if maxP:
-        v = float('-inf')
-        for i in range(2):
-            v = max(v, minimax(d+1, idx*2+i, 0, s, a, b, h))
-            a = max(a, v)
-            if b <= a: break
-    else:
-        v = float('inf')
-        for i in range(2):
-            v = min(v, minimax(d+1, idx*2+i, 1, s, a, b, h))
-            b = min(b, v)
-            if b <= a: break
-    return v
+using System;
+using System.Web.UI;
 
-print("The optimal value is: ",minimax(0, 0, 1, [3,5,6,9,1,2,0,-1], -999, 999, 3))
+namespace practical1a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
 
-```
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int num1 = Convert.ToInt32(TextBox1.Text);
+            int num2 = Convert.ToInt32(TextBox2.Text);
 
-### 🅑 A* Algorithm
+            int addition = num1 + num2;
+            int subtraction = num1 - num2;
+            int multiplication = num1 * num2;
+            int division = num1 / num2;
 
-**Python:**
-```
-from simpleai.search import SearchProblem, astar
-
-GOAL = 'HELLO WORLD'
-
-class HelloProblem(SearchProblem):
-    def actions(self, state):
-        if len(state) < len(GOAL):
-            return list(' ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-        else:
-            return []
-
-    def result(self, state, action):
-        return state + action
-
-    def is_goal(self, state):
-        return state == GOAL
-
-    def heuristic(self, state):
-        wrong = sum([1 if state[i] != GOAL[i] else 0 for i in range(len(state))])
-        missing = len(GOAL) - len(state)
-        return wrong + missing
-
-problem = HelloProblem(initial_state='')
-result = astar(problem)
-print(result.state)
-print(result.path())
-
-```
-
----
-
-### 🅑Depth first search algorithm
-
-**DFS:**
-```
-graph1 = { 
-    'A': set(['B', 'C']), 
-    'B': set(['A', 'D', 'E']), 
-    'C': set(['A', 'F']), 
-    'D': set(['B']), 
-    'E': set(['B', 'F']), 
-    'F': set(['C', 'E']) 
+            Label1.Text = "Addition of the numbers is: " + addition;
+            Label2.Text = "Subtraction of the numbers is: " + subtraction;
+            Label3.Text = "Multiplication of the numbers is: " + multiplication;
+            Label4.Text = "Division of the numbers is: " + division;
+        }
+    }
 }
 
-def DFS(graph, node, visited):
-    if node not in visited:
-        visited.append(node)
-        for n in graph[node]:
-            DFS(graph, n, visited)
-    return visited
-
-visited = DFS(graph1, 'A', [])
-print(visited)
 
 ```
 
-### 🅑Breadth First Search Algorithm
+### 🅑Create a simple application to demonstrate the concepts boxing and unboxing.
 
-**BFS:**
+
+
+**Boxing & Unboxing:**
+
+**WebForm1.aspx:**
 ```
-graph1 = { 
-    'A': set(['B','C']), 
-    'B': set(['A','D','E']), 
-    'C': set(['A','F','G']), 
-    'D': set(['B']), 
-    'E': set(['B']), 
-    'F': set(['C','G']), 
-    'G': set(['C','F']) 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical2a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Boxing and Unboxing</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Enter a Number:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="Button1" runat="server" Text="Show Boxed and Unboxed Values" OnClick="Button1_Click" />
+            <br /><br />
+            <asp:Label ID="Label2" runat="server" Text=""></asp:Label><br />
+            <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical2a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            int valueType = Convert.ToInt32(TextBox1.Text);
+
+            // Boxing
+            object boxed = valueType;
+            Label2.Text = "Boxed Value: " + boxed;
+
+            // Unboxing
+            int unboxed = (int)boxed;
+            Label3.Text = "Unboxed Value: " + unboxed;
+        }
+    }
 }
 
-def BFS(graph, start, explored):
-    queue = [start]
-    while queue:
-        node = queue.pop(0)
-        if node not in explored:
-            explored.append(node)
-            for neighbour in graph[node]:
-                if neighbour not in explored:
-                    queue.append(neighbour)
-    return explored
-
-explored = BFS(graph1, 'A', [])
-print(explored)
 
 ```
 
-### 🅑 4-Queen / N-Queen problem(PROLOG).
+### 🅒 Create a simple application to demonstrate use of the concepts of interfaces. 
 
-**4-Queen / N-Queen problem.:**
+
+**Interface:**
+
+**WebForm1.aspx:**
 ```
-queens(Solution):- 
-    permutation([1,2,3,4],Solution),safe(Solution). 
- 
-safe([]). 
-safe([Q|Others]):- 
-    safe(Others), 
-    no_attack(Q,Others,1). 
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical2c.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Interface Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Area Calculation using Interface</h2>
+            <asp:Label ID="Label1" runat="server" Text="Area of Circle: "></asp:Label>
+            <asp:Label ID="Label2" runat="server" Text=""></asp:Label>
+            <br /><br />
+            <asp:Label ID="Label3" runat="server" Text="Area of Rectangle: "></asp:Label>
+            <asp:Label ID="Label4" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
 
-no_attack(_,[],_). 
-no_attack(Q,[Q1|Qs],D):- 
-    Q=\=Q1+D, 
-    Q=\=Q1-D, 
-    D1 is D+1, 
-    no_attack(Q,Qs,D1).
-```
 
-### 🅑 tower of Hanoi problem.
-
-**tower of Hanoi problem**
-```
-def TOH(h, fp, tp, wp):
-    if h >= 1:
-        TOH(h - 1, fp, wp, tp)
-        md(fp, tp)
-        TOH(h - 1, wp, tp, fp)
-
-def md(fp, tp):
-    print("Moving disk from", fp, "to", tp)
-
-# Call the function for 4 disks
-TOH(4, "A", "B", "C")
-
-```
-### 🅑 Water-Jug Problem
-
-**Water-Jug Problem:**
-```
-def pour(jug1, jug2):
-    max1, max2, fill = 5, 7, 4
-    print("%d\t%d" % (jug1, jug2))
-    
-    if jug2 == fill:
-        return
-    elif jug2 == max2:
-        pour(0, jug1)
-    elif jug1 != 0 and jug2 == 0:
-        pour(0, jug1)
-    elif jug1 == fill:
-        pour(jug1, 0)
-    elif jug1 < max1:
-        pour(max1, jug2)
-    elif jug1 < (max2 - jug2):
-        pour(0, jug1 + jug2)
-    else:
-        pour(jug1 - (max2 - jug2), max2)
-
-print("JUG1\tJUG2")
-pour(0, 0)
 
 ```
 
-### 🅑  shuffle deck of cards
-
-**shuffle deck of cards:**
+**WebForm1.aspx.cs:**
 ```
-import itertools
-import random
+using System;
+using System.Web.UI;
 
-# Create a deck of 52 cards
-deck = list(itertools.product(range(1, 14), ['Spade', 'Heart', 'Diamond', 'Club']))
+namespace practical2c
+{
+    interface Area
+    {
+        double Show(double a, double b);
+    }
 
-# Shuffle the deck
-random.shuffle(deck)
+    class Rectangle : Area
+    {
+        public double Show(double a, double b)
+        {
+            return a * b;
+        }
+    }
 
-# Draw 5 cards
-print("You got:")
-for i in range(5):
-    print(deck[i][0], "of", deck[i][1])
-```
+    class Circle : Area
+    {
+        public double Show(double a, double b)
+        {
+            return 3.14 * a * a;
+        }
+    }
 
-### 🅑  prolog code for associative law
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            Circle cir = new Circle();
+            Rectangle rect = new Rectangle();
 
-**prolog code for associative law:**
-```
-associative_law(A,B,C,Result):- 
-    Result is A+(B+C). 
- 
-expression1(2,3,4). 
-expression2(5,6,7). 
+            double circleArea = cir.Show(3, 0);     // 3 is radius
+            double rectArea = rect.Show(5, 4);      // 5×4 rectangle
 
-derive_result:- 
-    expression1(A,B,C), 
-    associative_law(A,B,C,Result1), 
-    expression2(X,Y,Z), 
-    associative_law(X,Y,Z,Result2), 
-    write('Result of expression1 using associative law:'),write(Result1),nl, 
-    write('Result of expression2 using associative law:'),write(Result2),nl. 
-```
+            Label2.Text = circleArea.ToString();    // circle label
+            Label4.Text = rectArea.ToString();      // rectangle label
+        }
+    }
+}
 
-### 🅑  prolog code for distributive law
 
-**prolog code for distributive law:**
-```
-distributive_law(A,B,C,Result):- 
-    Result is A*(B+C). 
 
-expression1(2,3,4). 
-expression2(5,6,7). 
- 
-derive_result:- 
-    expression1(A,B,C), 
-    distributive_law(A,B,C,Result1), 
-    expression2(X,Y,Z), 
-    distributive_law(X,Y,Z,Result2), 
-    write('Result of expression1 using distributive law:'),write(Result1),nl, 
-    write('Result of expression2 using distributive law:'),write(Result2),nl.
 ```
 
----
+### 🅒Create a simple web page with various server controls to demonstrate setting and use of their properties. (Example :AutoPostBack)
 
-### 🅑  Derive the predicate: -->Sachin is a cricketer 
 
-**Derive the predicate: -->Sachin is a cricketer :**
+**AutoPostBack:**
 
-``` 
-%----------- 
-% Facts 
-%-----------
- 
-% Sports domain 
-isa(sachin, batsman). 
-isa(batsman, cricketer). 
-isa(cricketer, sportsperson). 
-% Science domain 
-isa(einstein, scientist). 
-isa(scientist, human). 
- 
-% Vehicle domain 
-isa(tesla_model3, car). 
-isa(car, vehicle). 
-isa(vehicle, machine). 
- 
-% Animal domain 
-isa(parrot, bird). 
-isa(bird, animal). 
- 
-%-----------
-% Rules 
-%-----------
-% Direct or transitive relation 
-isa(X, Y) :- 
-isa(X, Z), 
-isa(Z, Y).
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical3a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>AutoPostBack Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Demonstrate AutoPostBack Property</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter Your Name:"></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+            <br /><br />
+
+            <asp:Label ID="Label2" runat="server" Text="Select Your City:"></asp:Label>
+            <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                <asp:ListItem>--Select--</asp:ListItem>
+                <asp:ListItem>Mumbai</asp:ListItem>
+                <asp:ListItem>Pune</asp:ListItem>
+                <asp:ListItem>Nagpur</asp:ListItem>
+                <asp:ListItem>Nashik</asp:ListItem>
+            </asp:DropDownList>
+
+            <br /><br />
+            <asp:Label ID="Label3" runat="server" Text=""></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
 ```
 
-### 🅑 Write a program which contains three predicates: male, female, and  parent. Make rules for following family relations: father, mother, grandmother, brother, sister, uncle, aunt, nephew, niece and cousin.
-
-**Relationship:**
+**WebForm1.aspx.cs:**
 ```
-male(john).
-male(mike).
+using System;
+using System.Web.UI;
 
-female(susan).
-female(lisa).
+namespace practical3a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
 
-parent(john, mike). 
-parent(susan, mike). 
-parent(john, lisa). 
-parent(susan, lisa).
+        protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string name = TextBox1.Text;
+            string city = DropDownList1.SelectedItem.Text;
 
+            if (city != "--Select--" && name != "")
+                Label3.Text = "Hello " + name + ", You are from " + city + ".";
+            else
+                Label3.Text = "";
+        }
+    }
+}
 
-father(X,Y) :- male(X), parent(X,Y).
-
-mother(X,Y) :- female(X), parent(X,Y).
-
-brother(X,Y) :- male(X), parent(Z,X), parent(Z,Y), X \= Y.
-
-sister(X,Y) :- female(X), parent(Z,X), parent(Z,Y), X \= Y.
-
-sibling(X,Y) :- parent(Z,X), parent(Z,Y), X \= Y.
-
-uncle(X,Y) :- male(X), parent(Z,Y), brother(X,Z).
-
-aunt(X,Y) :- female(X), parent(Z,Y), sister(X,Z).
-
-nephew(X,Y) :- male(X), parent(Z,X), sibling(Z,Y).
-
-niece(X,Y) :- female(X), parent(Z,X), sibling(Z,Y).
-
-cousin(X,Y) :- parent(Z,X), sibling(Z,W), parent(W,Y).
-
-
-     John ── Susan
-      │
-   -----------
-   │         │
-  Mike      Lisa
-
-```
 
 
 ```
 
 
+### 🅒Demonstrate the use of Treeview operations on the web form.
+
+
+**TreeView:**
+
+**student.xml:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<Students>
+  <Student Name="Sachin">
+    <Course>BSc IT</Course>
+    <City>Mumbai</City>
+  </Student>
+  <Student Name="Amit">
+    <Course>BSc CS</Course>
+    <City>Pune</City>
+  </Student>
+  <Student Name="Riya">
+    <Course>BCA</Course>
+    <City>Nagpur</City>
+  </Student>
+</Students>
+
+
+
+```
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true"
+    CodeBehind="WebForm1.aspx.cs"
+    Inherits="practical3d.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>TreeView using XMLDataSource</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Display Student Details using TreeView Control</h2>
+
+            <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/Student.xml" />
+
+            <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1">
+            </asp:TreeView>
+        </div>
+    </form>
+</body>
+</html>
+```
+
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical3d
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+
+```
+
+### 🅒Create a Registration form to demonstrate use of various Validation controls.
+
+**1.  Range Validator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>RangeValidator Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <h2>RangeValidator Control Example</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter your Age: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+            <asp:RangeValidator ID="RangeValidator1" runat="server"
+                ControlToValidate="TextBox1"
+                MinimumValue="18" MaximumValue="30"
+                Type="Integer"
+                ErrorMessage="Age must be between 18 and 30"
+                ForeColor="Red">*</asp:RangeValidator>
+
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+
+            <br /><br />
+            <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label2.Text = "Age Accepted!";
+            }
+            else
+            {
+                Label2.Text = "";
+            }
+        }
+    }
+}
+
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages validateRequest="true" />
+  </system.web>
+</configuration>
+
+
+
+```
+
+
+**2.  Compare Validator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>CompareValidator Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <h2>CompareValidator Control Example</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter Password: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server" TextMode="Password"></asp:TextBox>
+
+            <br /><br />
+
+            <asp:Label ID="Label2" runat="server" Text="Confirm Password: "></asp:Label>
+            <asp:TextBox ID="TextBox2" runat="server" TextMode="Password"></asp:TextBox>
+
+            <asp:CompareValidator ID="CompareValidator1" runat="server"
+                ControlToCompare="TextBox1"
+                ControlToValidate="TextBox2"
+                ErrorMessage="Passwords do not match!"
+                ForeColor="Red">*</asp:CompareValidator>
+
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+
+            <br /><br />
+            <asp:Label ID="Label3" runat="server" ForeColor="Green"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label3.Text = "Password Matched!";
+            }
+            else
+            {
+                Label3.Text = "";
+            }
+        }
+    }
+}
+
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages validateRequest="true" />
+  </system.web>
+
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="WebForm1.aspx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+</configuration>
+
+
+
+```
+
+
+**3. RequiredFieldValidator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>RequiredFieldValidator Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <h2>RequiredFieldValidator Control Example</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter Your Name: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                ControlToValidate="TextBox1"
+                ErrorMessage="Name is required!"
+                ForeColor="Red">*</asp:RequiredFieldValidator>
+
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+
+            <br /><br />
+            <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label2.Text = "Name Submitted Successfully!";
+            }
+            else
+            {
+                Label2.Text = "";
+            }
+        }
+    }
+}
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages validateRequest="true" />
+  </system.web>
+
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="WebForm1.aspx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+</configuration>
+
+
+
+
+```
+
+
+**4. RegularExpressionValidator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>RequiredFieldValidator Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <h2>RequiredFieldValidator Control Example</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter Your Name: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+                ControlToValidate="TextBox1"
+                ErrorMessage="Name is required!"
+                ForeColor="Red">*</asp:RequiredFieldValidator>
+
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+
+            <br /><br />
+            <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label2.Text = "Name Submitted Successfully!";
+            }
+            else
+            {
+                Label2.Text = "";
+            }
+        }
+    }
+}
+
+
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages validateRequest="true" />
+  </system.web>
+
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="WebForm1.aspx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+</configuration>
+
+
+
+```
+
+
+**5. CustomValidator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="WebForm1.aspx.cs" 
+Inherits="_Default" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head id="Head1" runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:Label ID="Label1" runat="server" Text="Enter Number: "></asp:Label> 
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> 
+<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="TextBox1" 
+ErrorMessage="Enter number which is divisible by 2" ForeColor="Red" 
+OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator> 
+</div> 
+<p> 
+<asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" /> 
+</p><p> 
+<asp:Label ID="Label2" runat="server" Text="Result:"></asp:Label> 
+</p> 
+</form>
+</body> 
+</html> 
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+public partial class
+    _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs
+        e)
+    {
+    }
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Label2.Text += TextBox1.Text;
+    }
+    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+    {
+        int num = int.Parse(TextBox1.Text);
+        if (num % 2 == 0)
+        {
+            args.IsValid
+                = true;
+
+        }
+        else
+        {
+            args.IsValid = false;
+        }
+    }
+}
+
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0"?>
+<configuration>
+  <appSettings>
+    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
+  </appSettings>
+  <system.web>
+    <compilation debug="true" targetFramework="4.5" />
+    <httpRuntimetargetFramework="4.5" />
+  </system.web>
+</configuration>
+
+
+
+```
+
+
+### 🅒Create a Registration form to demonstrate use of various Validation controls.
+
+**1.  Range Validator:**
+
+**AdFile.xml:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<Advertisements>
+  <Ad>
+    <ImageUrl>~/Images/ad1.jpg</ImageUrl>
+    <NavigateUrl>https://www.microsoft.com</NavigateUrl>
+    <AlternateText>Visit Microsoft</AlternateText>
+    <Impressions>3</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ad2.jpg</ImageUrl>
+    <NavigateUrl>https://www.google.com</NavigateUrl>
+    <AlternateText>Visit Google</AlternateText>
+    <Impressions>2</Impressions>
+  </Ad>
+  <Ad>
+    <ImageUrl>~/Images/ad3.jpg</ImageUrl>
+    <NavigateUrl>https://www.yahoo.com</NavigateUrl>
+    <AlternateText>Visit Yahoo</AlternateText>
+    <Impressions>1</Impressions>
+  </Ad>
+</Advertisements>
+
+```
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4b.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>AdRotator Example</title>
+</head>
+<body>
+<form id="form1" runat="server">
+    <div style="text-align:center">
+        <h2>AdRotator Control Example</h2>
+
+        <asp:AdRotator ID="AdRotator1" runat="server"
+            AdvertisementFile="~/AdFile.xml"
+            Target="_blank" />
+    </div>
+</form>
+</body>
+</html>
+
+
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4b
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+    }
+}
+
+
+
+```
 
 
 
 
 
-*Powered by Ajay! 🎯*
+
+
