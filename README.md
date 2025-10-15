@@ -897,80 +897,742 @@ namespace practical4b
 
 ### 🅒  Create Web Form to demonstrate use User Controls.
 
-**1.  User Control:**
+**User Control:**
 
-**AdFile.xml:**
+**Default.aspx:**
 ```
-<?xml version="1.0" encoding="utf-8"?>
-<Advertisements>
-  <Ad>
-    <ImageUrl>~/Images/ad1.jpg</ImageUrl>
-    <NavigateUrl>https://www.microsoft.com</NavigateUrl>
-    <AlternateText>Visit Microsoft</AlternateText>
-    <Impressions>3</Impressions>
-  </Ad>
-  <Ad>
-    <ImageUrl>~/Images/ad2.jpg</ImageUrl>
-    <NavigateUrl>https://www.google.com</NavigateUrl>
-    <AlternateText>Visit Google</AlternateText>
-    <Impressions>2</Impressions>
-  </Ad>
-  <Ad>
-    <ImageUrl>~/Images/ad3.jpg</ImageUrl>
-    <NavigateUrl>https://www.yahoo.com</NavigateUrl>
-    <AlternateText>Visit Yahoo</AlternateText>
-    <Impressions>1</Impressions>
-  </Ad>
-</Advertisements>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" 
+Inherits="_Default" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:Label ID="Label1" runat="server" Text="This is User Control" Font-Bold="True" Font- 
+Size="XX-Large" Font-Underline="True"></asp:Label> 
+<br /><br /> 
+<asp:Label ID="Label2" runat="server" Text="Name: "></asp:Label> 
+<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> 
+</div> 
+<asp:Label ID="Label3" runat="server" Text="City: "></asp:Label> 
+<asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> 
+<p> 
+<asp:Button ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" 
+/></p><p> 
+<asp:Label ID="Label4" runat="server" Text="Result:"></asp:Label>
+</p> 
+</form> 
+</body> 
+</html>
 
 ```
 
-**WebForm1.aspx:**
+**Default.aspx.cs:**
 ```
-<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4b.WebForm1" %>
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>AdRotator Example</title>
-</head>
-<body>
-<form id="form1" runat="server">
-    <div style="text-align:center">
-        <h2>AdRotator Control Example</h2>
+using System; 
+using System.Collections.Generic; 
+using System.Linq; using 
+System.Web; using System.Web.UI; 
+using System.Web.UI.WebControls; 
+public partial class _Default :System.Web.UI.Page{ 
+protected void Page_Load(object sender, EventArgs e) 
+{ 
+} 
+protected void Button1_Click(object sender, EventArgs e)  { 
+Label4.Text += "</br>Your name is " + TextBox1.Text + "</br>You are from " + 
+TextBox2.Text; 
+}} 
 
-        <asp:AdRotator ID="AdRotator1" runat="server"
-            AdvertisementFile="~/AdFile.xml"
-            Target="_blank" />
-    </div>
-</form>
-</body>
+
+
+
+```
+### 🅒 Create Web Form to demonstrate use of Website Navigation controls.
+
+**Site Map:**
+
+**Home.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Home.aspx.cs" Inherits="Home" 
+%> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" /> 
+<br /> 
+</div> 
+<asp:Menu ID="Menu1" runat="server" BackColor="#F7F6F3" 
+DataSourceID="SiteMapDataSource1" DynamicHorizontalOffset="2" Font-Names="Verdana" Font- 
+Size="0.8em" ForeColor="#7C6F57" StaticSubMenuIndent="10px"> 
+<DynamicHoverStyleBackColor="#7C6F57" ForeColor="White" /> 
+<DynamicMenuItemStyleHorizontalPadding="5px" VerticalPadding="2px" /> 
+<DynamicMenuStyleBackColor="#F7F6F3" />
+<DynamicSelectedStyleBackColor="#5D7B9D" /> 
+<StaticHoverStyleBackColor="#7C6F57" ForeColor="White" /> 
+<StaticMenuItemStyleHorizontalPadding="5px" VerticalPadding="2px" /> 
+<StaticSelectedStyleBackColor="#5D7B9D" /> 
+</asp:Menu> 
+</form> 
+</body> 
+</html> 
+
+```
+
+**AboutUs.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="AboutUs.aspx.cs" 
+Inherits="AboutUs" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div><p> 
+We are offering B.Sc.I.T. Course in the B.N.N. College. 
+</p><p> 
+The course duration is of 3 years. 
+</p> 
+</div> 
+</form> 
+</body> 
 </html>
 
 
 
+```
+
+**ContactUs.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="ContactUs.aspx.cs" 
+Inherits="Message" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div><p> 
+Management Contact:8976574534 
+</p><p> 
+Office Contact:9876897645 
+</p> 
+</div> 
+</form> 
+</body> 
+</html>
 
 ```
 
-**WebForm1.aspx.cs:**
+**Web.sitemap:**
 ```
+<?xml version="1.0" encoding="utf-8" ?> 
+<siteMapxmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" > 
+<siteMapNodeurl="Home.aspx" title="Home Page" description="Home Page"> 
+<siteMapNodeurl="AboutUs.aspx" title="AboutUs Page" description="AboutUs Page" /> 
+<siteMapNodeurl="ContactUs.aspx" title="ContactUs Page" description="ContactUs Page" /> 
+</siteMapNode> 
+</siteMap>
+
+```
+
+### 🅒 Create a web application to demonstrate use of Master Page and content page.
+
+**Master Page:**
+
+**MasterPage.master:**
+```
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" 
+Inherits="MasterPage" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+<asp:ContentPlaceHolder id="head" runat="server"> 
+</asp:ContentPlaceHolder> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"> 
+</asp:ContentPlaceHolder>
+<br /> 
+<asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"> </asp:ContentPlaceHolder> 
+<br /> 
+<asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"> 
+</asp:ContentPlaceHolder> 
+</div> 
+</form> 
+</body> 
+</html>
+```
+
+**Default.aspx:**
+```
+<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" 
+AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %> 
+<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server"> 
+</asp:Content> 
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server"> 
+<asp:Label ID="Label1" runat="server" Text="Advanced Web Development"></asp:Label> 
+<br /> 
+</asp:Content> 
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server"> 
+<asp:Label ID="Label2" runat="server" Text="Advanced Java Technologies"></asp:Label> 
+<br /> 
+</asp:Content> 
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server"> 
+<asp:Button ID="Button1" runat="server" Text="Click Here" OnClick="Button1_Click" /> 
+</asp:Content> 
+
+
+
+```
+
+**Default.aspx.cs:**
+```
+
 using System;
-using System.Web.UI;
+using System.Collections.Generic; 
+using System.Linq; using 
+System.Web; using 
+System.Web.UI; 
+using System.Web.UI.WebControls; public partial 
+class _Default :System.Web.UI.Page 
+{ protected void Page_Load(object sender, EventArgs e) 
+{ 
+} 
+protected void Button1_Click(object sender, EventArgs e) 
+{ 
+Label1.Text = "Artificial Intelligence & Applications"; 
+Label2.Text = "Software Project Development"; 
+} 
+}
 
-namespace practical4b
-{
-    public partial class WebForm1 : Page
-    {
-        protected void Page_Load(object sender, EventArgs e)
-        {
-        }
-    }
+
+```
+
+### 🅒 Create a web application for inserting and deleting records from a database.
+
+**DATABASE:**
+
+**Default.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" 
+Inherits="_Default" %>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+ 
+</div> 
+<asp:DetailsView ID="DetailsView1" runat="server" AutoGenerateRows="False" 
+DataKeyNames="Id" DataSourceID="SqlDataSource1" Height="50px" Width="125px"> 
+<Fields> 
+<asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" /> 
+<asp:BoundField DataField="FirstName" HeaderText="FirstName" 
+SortExpression="FirstName" /> 
+<asp:BoundField DataField="LastName" HeaderText="LastName" 
+SortExpression="LastName" /> 
+<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" /> 
+<asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" /> 
+<asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" /> 
+<asp:CommandField ShowDeleteButton="True" ShowInsertButton="True" /> 
+</Fields> 
+</asp:DetailsView> 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+ConflictDetection="CompareAllValues" ConnectionString="<%$ 
+ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Student] WHERE 
+[Id] = @original_Id AND (([FirstName] = @original_FirstName) OR ([FirstName] IS NULL AND 
+@original_FirstName IS NULL)) AND (([LastName] = @original_LastName) OR ([LastName] IS 
+NULL AND @original_LastName IS NULL)) AND (([City] = @original_City) OR ([City] IS 
+NULL AND @original_City IS NULL)) AND (([Country] = @original_Country) OR ([Country] IS 
+NULL AND @original_Country IS NULL)) AND (([Phone] = @original_Phone) OR ([Phone] IS 
+NULL AND @original_Phone IS NULL))" InsertCommand="INSERT INTO [Student] ([Id], 
+[FirstName], [LastName], [City], [Country], [Phone]) VALUES (@Id, @FirstName, @LastName, 
+@City, @Country, @Phone)" OldValuesParameterFormatString="original_{0}" 
+SelectCommand="SELECT * FROM [Student]" UpdateCommand="UPDATE [Student] SET 
+[FirstName] = @FirstName, [LastName] = @LastName, [City] = @City, [Country] = @Country, 
+[Phone] = @Phone WHERE [Id] = @original_Id AND (([FirstName] = @original_FirstName) OR 
+([FirstName] IS NULL AND @original_FirstName IS NULL)) AND (([LastName] = 
+@original_LastName) OR ([LastName] IS NULL AND @original_LastName IS NULL)) AND 
+(([City] = @original_City) OR ([City] IS NULL AND @original_City IS NULL)) AND (([Country]
+= @original_Country) OR ([Country] IS NULL AND @original_Country IS NULL)) AND 
+(([Phone] = @original_Phone) OR ([Phone] IS NULL AND @original_Phone IS NULL))"> 
+<DeleteParameters> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_FirstName" Type="String" /> 
+<asp:Parameter Name="original_LastName" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" />
+<asp:Parameter Name="original_Phone" Type="String" /> 
+</DeleteParameters> 
+<InsertParameters> 
+<asp:Parameter Name="Id" Type="Int32" /> 
+<asp:Parameter Name="FirstName" Type="String" /> 
+<asp:Parameter Name="LastName" Type="String" /> 
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone" Type="String" /> 
+</InsertParameters> 
+<UpdateParameters> 
+<asp:Parameter Name="FirstName" Type="String" /> 
+<asp:Parameter Name="LastName" Type="String" /> 
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone" Type="String" /> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_FirstName" Type="String" /> 
+<asp:Parameter Name="original_LastName" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" /> 
+<asp:Parameter Name="original_Phone" Type="String" /> 
+</UpdateParameters> 
+</asp:SqlDataSource> 
+</form> 
+</body> 
+</html>
+
+
+```
+
+### 🅒  Create a web application to display Using Disconnected Data Access and Databinding using GridView.
+
+
+**Gridview with Databinding:**
+
+**Default.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" 
+Inherits="_Default" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Show 
+Disconnected Data" /> 
+</div> 
+<br /> 
+<asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+DataKeyNames="Id" DataSourceID="SqlDataSource1"> 
+<Columns> 
+<asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" /> 
+<asp:BoundField DataField="FirstName" HeaderText="FirstName" 
+SortExpression="FirstName" />
+<asp:BoundField DataField="LastName" HeaderText="LastName" 
+SortExpression="LastName" /> 
+<asp:BoundField DataField="City" HeaderText="City" SortExpression="City" /> 
+<asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" 
+/> 
+<asp:BoundField DataField="Phone" HeaderText="Phone" SortExpression="Phone" /> 
+</Columns> 
+</asp:GridView> 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+ConflictDetection="CompareAllValues" ConnectionString="<%$ 
+ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Student] WHERE 
+[Id] = @original_Id AND (([FirstName] = @original_FirstName) OR ([FirstName] IS NULL AND 
+@original_FirstName IS NULL)) AND (([LastName] = @original_LastName) OR ([LastName] IS 
+NULL AND @original_LastName IS NULL)) AND (([City] = @original_City) OR ([City] IS 
+NULL AND @original_City IS NULL)) AND (([Country] = @original_Country) OR ([Country] IS 
+NULL AND @original_Country IS NULL)) AND (([Phone] = @original_Phone) OR ([Phone] IS 
+NULL AND @original_Phone IS NULL))" InsertCommand="INSERT INTO [Student] ([Id], 
+[FirstName], [LastName], [City], [Country], [Phone]) VALUES (@Id, @FirstName, @LastName, 
+@City, @Country, @Phone)" OldValuesParameterFormatString="original_{0}" 
+SelectCommand="SELECT * FROM [Student]" UpdateCommand="UPDATE [Student] SET 
+[FirstName] = @FirstName, [LastName] = @LastName, [City] = @City, [Country] = @Country, 
+[Phone] = @Phone WHERE [Id] = @original_Id AND (([FirstName] = @original_FirstName) OR 
+([FirstName] IS NULL AND @original_FirstName IS NULL)) AND (([LastName] = 
+@original_LastName) OR ([LastName] IS NULL AND @original_LastName IS NULL)) AND 
+(([City] = @original_City) OR ([City] IS NULL AND @original_City IS NULL)) AND (([Country] 
+= @original_Country) OR ([Country] IS NULL AND @original_Country IS NULL)) AND 
+(([Phone] = @original_Phone) OR ([Phone] IS NULL AND @original_Phone IS NULL))"> 
+<DeleteParameters> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_FirstName" Type="String" /> 
+<asp:Parameter Name="original_LastName" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" /> 
+<asp:Parameter Name="original_Phone" Type="String" /> 
+</DeleteParameters> 
+<InsertParameters> 
+<asp:Parameter Name="Id" Type="Int32" /> 
+<asp:Parameter Name="FirstName" Type="String" /> 
+<asp:Parameter Name="LastName" Type="String" /> 
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone" Type="String" /> 
+</InsertParameters> 
+<UpdateParameters> 
+<asp:Parameter Name="FirstName" Type="String" /> 
+<asp:Parameter Name="LastName" Type="String" /> 
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone" Type="String" /> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_FirstName" Type="String" />
+<asp:Parameter Name="original_LastName" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" /> 
+<asp:Parameter Name="original_Phone" Type="String" /> 
+</UpdateParameters> 
+</asp:SqlDataSource> 
+</form> 
+</body> 
+</html>
+
+```
+
+**Default.aspx.cs:**
+```
+using System; 
+using System.Collections.Generic; 
+using System.Linq; using 
+System.Web; using System.Web.UI; 
+using System.Web.UI.WebControls; 
+using System.Data; using 
+System.Data.SqlClient; using 
+System.Configuration; 
+ 
+public partial class _Default : System.Web.UI.Page 
+{ 
+protected void Page_Load(object sender, EventArgs e) 
+{ 
+ 
+} 
+protected void Button1_Click(object sender, EventArgs e) 
+{ 
+string connStr = ConfigurationManager.ConnectionStrings["connStr"].ConnectionString; 
+SqlConnection con=new SqlConnection(connStr); 
+SqlDataAdapter objDa=new SqlDataAdapter(); 
+DataSet objDs= new DataSet(); 
+using (SqlConnection objConn = new SqlConnection(connStr)) 
+{ 
+SqlCommand objCmd = new SqlCommand("Select * from Student", objConn); 
+objCmd.CommandType = CommandType.Text; 
+objDa.SelectCommand = objCmd; 
+objDa.Fill(objDs, "Product"); 
+GridView1.DataSource = objDs.Tables[0]; 
+GridView1.DataBind(); 
+} 
+} 
 }
 
 
 
 ```
 
+**Web.config::**
+```
 
+<?xml version="1.0"?>
+<configuration>
+<connectionStrings> 
+<add name="ConnectionString" connectionString="Data 
+Source=(LocalDB)\v11.0;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated 
+Security=True" 
+providerName="System.Data.SqlClient" /> 
+</connectionStrings> 
+<system.web> 
+<compilation debug="true" targetFramework="4.8.1" /> 
+<httpRuntime targetFramework="4.8.1" /> 
+</system.web> 
+ 
+</configuration>
+
+
+```
+
+
+### 🅒  Create a web application for inserting and deleting records from a database. (Using Execute-Non Query). 
+
+
+**Database:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" 
+Inherits="Pract7a.WebForm1" %> 
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title>
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+Enter Student 
+Id:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<asp:TextBox ID="TextBox6" runat="server"></asp:TextBox> 
+<br /> 
+Enter Student FirstName:&nbsp; <asp:TextBox ID="TextBox1" 
+runat="server"></asp:TextBox> 
+<br /> 
+Enter Student LastName:&nbsp; <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox> 
+<br /> 
+Enter Student City:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<asp:TextBox ID="TextBox3" runat="server"></asp:TextBox> 
+<br /> 
+Enter Student Country:&nbsp;&nbsp;&nbsp;&nbsp; 
+<asp:TextBox ID="TextBox4" runat="server"></asp:TextBox> 
+<br /> 
+Enter Student Phone:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+<asp:TextBox ID="TextBox5" runat="server"></asp:TextBox> 
+<br /> 
+<br /> 
+<asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Insert Record" /> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbs 
+p;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&n 
+bsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+&nbsp; 
+<asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Delete Record" /> 
+<br /> 
+<br /> 
+<asp:Label ID="Label1" runat="server" Text="Result:"></asp:Label> 
+ 
+</div> 
+</form> 
+</body> 
+</html>
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System; 
+using System.Collections.Generic; 
+using System.Linq; using 
+System.Web; using System.Web.UI; 
+using System.Web.UI.WebControls; 
+using System.Data; using 
+System.Data.SqlClient; 
+using System.Configuration; 
+ 
+namespace Pract7a 
+{
+public partial class WebForm1 : System.Web.UI.Page 
+{ 
+protected void Page_Load(object sender, EventArgs e) 
+{ 
+ 
+} 
+ 
+protected void Button1_Click(object sender, EventArgs e) 
+{ 
+String connstr=ConfigurationManager.ConnectionStrings["connstr"].ConnectionString; 
+SqlConnection con=new SqlConnection(connstr); 
+string insertquery="insert into Student values(@Id, @FirstName, @LastName, @City, @Country, 
+@Phone)"; 
+SqlCommand cmd=new SqlCommand(insertquery,con); 
+cmd.Parameters.AddWithValue("@FirstName",TextBox1.Text); 
+cmd.Parameters.AddWithValue("@LastName",TextBox2.Text); 
+cmd.Parameters.AddWithValue("@City",TextBox3.Text); 
+cmd.Parameters.AddWithValue("@Country",TextBox4.Text); 
+cmd.Parameters.AddWithValue("@Phone",TextBox5.Text); 
+cmd.Parameters.AddWithValue("@Id", TextBox6.Text); con.Open(); 
+cmd.ExecuteNonQuery(); 
+Label1.Text="Record Inserted Successfully...!"; con.Close(); 
+} 
+ 
+protected void Button2_Click(object sender, EventArgs e) 
+{ 
+string connstr = ConfigurationManager.ConnectionStrings["connstr"].ConnectionString; 
+SqlConnection con = new SqlConnection(connstr); string deletequery = "delete from 
+person where Id=@Id"; SqlCommand cmd = new SqlCommand(deletequery, con); 
+cmd.Parameters.AddWithValue("@Id", TextBox6.Text);  con.Open(); 
+cmd.ExecuteNonQuery(); 
+Label1.Text = "Record Deleted Successfully...!"; con.Close(); 
+} 
+} 
+}
+
+
+```
+
+### 🅒  8.A) Create a web application to demonstrate use of GridView button column and GridView events along with paging and sorting. 
+
+
+**Gridview:**
+
+**Default.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" 
+Inherits="_Default" %>
+<!DOCTYPE html> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head runat="server"> 
+<title></title> 
+</head> 
+<body> 
+<form id="form1" runat="server"> 
+<div> 
+<asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" 
+AutoGenerateColumns="False" DataKeyNames="Id" DataSourceID="SqlDataSource1"> 
+<Columns> 
+<asp:BoundField DataField="Id" HeaderText="Id" ReadOnly="True" SortExpression="Id" 
+/> 
+<asp:BoundField DataField="First Name" HeaderText="First Name" 
+SortExpression="First Name" /> 
+<asp:BoundField DataField="Last Name" HeaderText="Last Name" SortExpression="Last 
+Name" /> 
+ <asp:BoundField DataField="City" HeaderText="City" SortExpression="City" /> 
+<asp:BoundField DataField="Country" HeaderText="Country" SortExpression="Country" 
+ /> 
+ <asp:BoundField DataField="Phone " HeaderText="Phone " SortExpression="Phone " /> 
+<asp:CommandField ButtonType="Button" HeaderText="EDIT" ShowEditButton="True" 
+ShowHeader="True" /> 
+<asp:CommandField ButtonType="Button" HeaderText="DELETE" 
+ShowDeleteButton="True" ShowHeader="True" /> 
+</Columns> 
+</asp:GridView> 
+<asp:SqlDataSource ID="SqlDataSource1" runat="server" 
+ConflictDetection="CompareAllValues" ConnectionString="<%$ 
+ConnectionStrings:ConnectionString %>" DeleteCommand="DELETE FROM [Student] WHERE 
+[Id] = @original_Id AND (([First Name] = @original_First_Name) OR ([First Name] IS NULL 
+AND @original_First_Name IS NULL)) AND (([Last Name] = @original_Last_Name) OR ([Last 
+Name] IS NULL AND @original_Last_Name IS NULL)) AND (([City] = @original_City) OR
+([City] IS NULL AND @original_City IS NULL)) AND (([Country] = @original_Country) OR 
+([Country] IS NULL AND @original_Country IS NULL)) AND (([Phone ] = @original_Phone_) 
+OR ([Phone ] IS NULL AND @original_Phone_ IS NULL))" InsertCommand="INSERT INTO 
+[Student] ([Id], [First Name], [Last Name], [City], [Country], [Phone ]) VALUES (@Id, 
+@First_Name, @Last_Name, @City, @Country, @Phone_)" 
+OldValuesParameterFormatString="original_{0}" SelectCommand="SELECT * FROM [Student]" 
+UpdateCommand="UPDATE [Student] SET [First Name] = @First_Name, [Last Name] = 
+@Last_Name, [City] = @City, [Country] = @Country, [Phone ] = @Phone_ WHERE [Id] = 
+@original_Id AND (([First Name] = @original_First_Name) OR ([First Name] IS NULL AND 
+@original_First_Name IS NULL)) AND (([Last Name] = @original_Last_Name) OR ([Last Name] 
+IS NULL AND @original_Last_Name IS NULL)) AND (([City] = @original_City) OR ([City] IS 
+NULL AND @original_City IS NULL)) AND (([Country] = @original_Country) OR ([Country] IS 
+NULL AND @original_Country IS NULL)) AND (([Phone ] = @original_Phone_) OR ([Phone ] IS 
+NULL AND @original_Phone_ IS NULL))"> 
+<DeleteParameters> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_First_Name" Type="String" /> 
+<asp:Parameter Name="original_Last_Name" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" /> 
+<asp:Parameter Name="original_Phone_" Type="String" /> 
+</DeleteParameters> 
+<InsertParameters> 
+<asp:Parameter Name="Id" Type="Int32" /> 
+<asp:Parameter Name="First_Name" Type="String" /> 
+<asp:Parameter Name="Last_Name" Type="String" /> 
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone_" Type="String" /> 
+</InsertParameters> 
+<UpdateParameters> 
+<asp:Parameter Name="First_Name" Type="String" /> 
+<asp:Parameter Name="Last_Name" Type="String" />
+<asp:Parameter Name="City" Type="String" /> 
+<asp:Parameter Name="Country" Type="String" /> 
+<asp:Parameter Name="Phone_" Type="String" /> 
+<asp:Parameter Name="original_Id" Type="Int32" /> 
+<asp:Parameter Name="original_First_Name" Type="String" /> 
+<asp:Parameter Name="original_Last_Name" Type="String" /> 
+<asp:Parameter Name="original_City" Type="String" /> 
+<asp:Parameter Name="original_Country" Type="String" /> 
+<asp:Parameter Name="original_Phone_" Type="String" /> 
+</UpdateParameters> 
+</asp:SqlDataSource> 
+</div> 
+</form> 
+</body> 
+</html> 
+```
+
+
+### 🅒  8.A) EXCEPTION HANDELING. 
+
+
+**Exception Handeling:**
+
+**Default.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>Exception Handling Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            Enter a number to divide 100 by: 
+            <asp:TextBox ID="txtNumber" runat="server"></asp:TextBox>
+            <asp:Button ID="btnDivide" runat="server" Text="Divide" OnClick="btnDivide_Click" />
+            <br /><br />
+            <asp:Label ID="lblResult" runat="server" ForeColor="Red"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+```
+
+**Default.aspx.cs:**
+```
+using System;
+
+public partial class _Default : System.Web.UI.Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+
+    }
+
+    protected void btnDivide_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            // Convert input to integer
+            int number = int.Parse(txtNumber.Text);
+
+            // Perform division
+            int result = 100 / number;
+
+            // Display result
+            lblResult.ForeColor = System.Drawing.Color.Green;
+            lblResult.Text = "Result: " + result.ToString();
+        }
+        catch (DivideByZeroException ex)
+        {
+            lblResult.ForeColor = System.Drawing.Color.Red;
+            lblResult.Text = "Error: Cannot divide by zero!";
+        }
+        catch (FormatException ex)
+        {
+            lblResult.ForeColor = System.Drawing.Color.Red;
+            lblResult.Text = "Error: Please enter a valid number!";
+        }
+        catch (Exception ex)
+        {
+            lblResult.ForeColor = System.Drawing.Color.Red;
+            lblResult.Text = "An unexpected error occurred: " + ex.Message;
+        }
+    }
+}
+
+
+```
 
 
 
