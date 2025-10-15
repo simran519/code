@@ -1159,48 +1159,61 @@ namespace practical4d
 
 **MasterPage.master:**
 ```
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" 
-Inherits="MasterPage" %> 
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head runat="server"> 
-<title></title> 
-<asp:ContentPlaceHolder id="head" runat="server"> 
-</asp:ContentPlaceHolder> 
-</head> 
-<body> 
-<form id="form1" runat="server"> 
-<div> 
-<asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"> 
-</asp:ContentPlaceHolder>
-<br /> 
-<asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"> </asp:ContentPlaceHolder> 
-<br /> 
-<asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"> 
-</asp:ContentPlaceHolder> 
-</div> 
-</form> 
-</body> 
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="SiteMaster" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>Master Page Example</title>
+    <asp:ContentPlaceHolder ID="head" runat="server"></asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+            <br />
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server"></asp:ContentPlaceHolder>
+            <br />
+ <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
 </html>
+
+```
+
+**MasterPage.master.cs:**
+```
+using System;
+using System.Web.UI;
+
+public partial class SiteMaster : MasterPage
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+    }
+}
 ```
 
 **Default.aspx:**
 ```
-<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPage.master" 
-AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %> 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server"> 
-</asp:Content> 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server"> 
-<asp:Label ID="Label1" runat="server" Text="Advanced Web Development"></asp:Label> 
-<br /> 
-</asp:Content> 
-<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" Runat="Server"> 
-<asp:Label ID="Label2" runat="server" Text="Advanced Java Technologies"></asp:Label> 
-<br /> 
-</asp:Content> 
-<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" Runat="Server"> 
-<asp:Button ID="Button1" runat="server" Text="Click Here" OnClick="Button1_Click" /> 
-</asp:Content> 
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master"
+    AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Label ID="Label1" runat="server" Text="Advanced Web Development"></asp:Label>
+    <br />
+</asp:Content>
+
+<asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
+    <asp:Label ID="Label2" runat="server" Text="Advanced Java Technologies"></asp:Label>
+    <br />
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
+    <asp:Button ID="Button1" runat="server" Text="Click Here" OnClick="Button1_Click" />
+</asp:Content>
+
 
 
 
@@ -1210,20 +1223,19 @@ AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
 ```
 
 using System;
-using System.Collections.Generic; 
-using System.Linq; using 
-System.Web; using 
-System.Web.UI; 
-using System.Web.UI.WebControls; public partial 
-class _Default :System.Web.UI.Page 
-{ protected void Page_Load(object sender, EventArgs e) 
-{ 
-} 
-protected void Button1_Click(object sender, EventArgs e) 
-{ 
-Label1.Text = "Artificial Intelligence & Applications"; 
-Label2.Text = "Software Project Development"; 
-} 
+using System.Web.UI;
+
+public partial class _Default : Page
+{
+    protected void Page_Load(object sender, EventArgs e)
+    {
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        Label1.Text = "Artificial Intelligence & Applications";
+        Label2.Text = "Software Project Development";
+    }
 }
 
 
