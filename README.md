@@ -646,21 +646,22 @@ namespace practical4a
 <%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head id="Head1" runat="server">
-    <title>RequiredFieldValidator Example</title>
+<head runat="server">
+    <title>RegularExpressionValidator Example</title>
 </head>
 <body>
     <form id="form1" runat="server">
         <div style="text-align:center">
-            <h2>RequiredFieldValidator Control Example</h2>
+            <h2>RegularExpressionValidator Control Example</h2>
 
-            <asp:Label ID="Label1" runat="server" Text="Enter Your Name: "></asp:Label>
+            <asp:Label ID="Label1" runat="server" Text="Enter Email ID: "></asp:Label>
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
 
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server"
+            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server"
                 ControlToValidate="TextBox1"
-                ErrorMessage="Name is required!"
-                ForeColor="Red">*</asp:RequiredFieldValidator>
+                ErrorMessage="Enter a valid Email ID!"
+                ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"
+                ForeColor="Red">*</asp:RegularExpressionValidator>
 
             <br /><br />
 
@@ -672,6 +673,7 @@ namespace practical4a
     </form>
 </body>
 </html>
+
 
 
 
@@ -694,7 +696,115 @@ namespace practical4a
         {
             if (Page.IsValid)
             {
-                Label2.Text = "Name Submitted Successfully!";
+                Label2.Text = "Valid Email ID!";
+            }
+            else
+            {
+                Label2.Text = "";
+            }
+        }
+    }
+}
+
+
+
+
+
+```
+
+**Web.config:**
+```
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages validateRequest="true" />
+  </system.web>
+
+  <system.webServer>
+    <defaultDocument>
+      <files>
+        <add value="WebForm1.aspx" />
+      </files>
+    </defaultDocument>
+  </system.webServer>
+</configuration>
+
+
+
+
+```
+
+
+**5. CustomValidator:**
+
+**WebForm1.aspx:**
+```
+<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="WebForm1.aspx.cs" Inherits="practical4a.WebForm1" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>CustomValidator Example</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div style="text-align:center">
+            <h2>CustomValidator Control Example</h2>
+
+            <asp:Label ID="Label1" runat="server" Text="Enter a Number: "></asp:Label>
+            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+            <asp:CustomValidator ID="CustomValidator1" runat="server"
+                ControlToValidate="TextBox1"
+                ErrorMessage="Enter an even number only!"
+                OnServerValidate="CustomValidator1_ServerValidate"
+                ForeColor="Red">*</asp:CustomValidator>
+
+            <br /><br />
+
+            <asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" />
+
+            <br /><br />
+            <asp:Label ID="Label2" runat="server" ForeColor="Green"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>
+
+
+```
+
+**WebForm1.aspx.cs:**
+```
+using System;
+using System.Web.UI;
+
+namespace practical4a
+{
+    public partial class WebForm1 : Page
+    {
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
+        {
+            int num;
+            if (int.TryParse(args.Value, out num) && num % 2 == 0)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+            }
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                Label2.Text = "Valid Input!";
             }
             else
             {
@@ -727,93 +837,6 @@ namespace practical4a
   </system.webServer>
 </configuration>
 
-
-
-```
-
-
-**5. CustomValidator:**
-
-**WebForm1.aspx:**
-```
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="WebForm1.aspx.cs" 
-Inherits="_Default" %> 
-<!DOCTYPE html> 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
-<head id="Head1" runat="server"> 
-<title></title> 
-</head> 
-<body> 
-<form id="form1" runat="server"> 
-<div> 
-<asp:Label ID="Label1" runat="server" Text="Enter Number: "></asp:Label> 
-<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox> 
-<asp:CustomValidator ID="CustomValidator1" runat="server" ControlToValidate="TextBox1" 
-ErrorMessage="Enter number which is divisible by 2" ForeColor="Red" 
-OnServerValidate="CustomValidator1_ServerValidate"></asp:CustomValidator> 
-</div> 
-<p> 
-<asp:Button ID="Button1" runat="server" Text="Submit" OnClick="Button1_Click" /> 
-</p><p> 
-<asp:Label ID="Label2" runat="server" Text="Result:"></asp:Label> 
-</p> 
-</form>
-</body> 
-</html> 
-
-```
-
-**WebForm1.aspx.cs:**
-```
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-public partial class
-    _Default : System.Web.UI.Page
-{
-    protected void Page_Load(object sender, EventArgs
-        e)
-    {
-    }
-    protected void Button1_Click(object sender, EventArgs e)
-    {
-        Label2.Text += TextBox1.Text;
-    }
-    protected void CustomValidator1_ServerValidate(object source, ServerValidateEventArgs args)
-    {
-        int num = int.Parse(TextBox1.Text);
-        if (num % 2 == 0)
-        {
-            args.IsValid
-                = true;
-
-        }
-        else
-        {
-            args.IsValid = false;
-        }
-    }
-}
-
-
-
-```
-
-**Web.config:**
-```
-<?xml version="1.0"?>
-<configuration>
-  <appSettings>
-    <add key="ValidationSettings:UnobtrusiveValidationMode" value="None"/>
-  </appSettings>
-  <system.web>
-    <compilation debug="true" targetFramework="4.5" />
-    <httpRuntimetargetFramework="4.5" />
-  </system.web>
-</configuration>
 
 
 
